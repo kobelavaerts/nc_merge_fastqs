@@ -6,7 +6,7 @@ include { CREATE_ARCHIVE } from './modules/create_archive/main.nf'
 
 workflow {
     // input_ch = Channel.fromFilePairs( params.input )
-    input_ch = Channel.fromPath( params.input)
+    input_ch = Channel.fromPath( params.input, checkIfExists: true )
     .map { 
         file ->
         def sample_id = file.getName().split(/_S\d+_L00\d|_UMI_S\d+_L00\d/)[0]
